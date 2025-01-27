@@ -7,7 +7,6 @@ spec:
     app: flask-app
   ports:
     - protocol: TCP
-      port: 30001          # Puerto del servicio
-      targetPort: 5000    # Puerto del contenedor
-      nodePort: 30001      # Puerto expuesto en el nodo
-  type: NodePort          # Tipo de servicio
+      port: 8956
+      targetPort: 5000
+  type: LoadBalancer
