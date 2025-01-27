@@ -6,33 +6,25 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+    # O si definiste otra etiqueta en tu runner, por ejemplo "windows", usar:
+    # runs-on: [self-hosted, windows]
 
     steps:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-
-      - name: Login to Docker registry
+      - name: Docker Login
         run: |
-          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+          docker login -u raykhan007 -p "Tt123456789?"
 
-      - name: Build Docker image
+      - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-flask-app:latest .
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-flask-app:latest
-
-      - name: Configure kubectl
-        uses: azure/setup-kubectl@v3
-        with:
-          version: 'latest'
-      # O bien usa otro método para configurar kubectl y credenciales
+          docker build -t raykhan007/my-flask-app:latest .
+          docker push raykhan007/my-flask-app:latest
 
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
+          kubectl rollout status deployment my-flask-app-deployment
