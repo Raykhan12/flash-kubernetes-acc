@@ -40,7 +40,7 @@ def hello():
           <!-- Logo de Accenture -->
           <div class="mb-4">
             <img 
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Accenture_Logo_2016.svg/1280px-Accenture_Logo_2016.svg.png" 
+              src="https://1000marcas.net/wp-content/uploads/2021/06/Accenture-logo.png" 
               alt="Accenture Logo" 
               width="250"
             />
