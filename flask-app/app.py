@@ -9,25 +9,59 @@ def hello():
     <html lang="es">
       <head>
         <meta charset="UTF-8" />
-        <title>Demo Flask + Bootstrap</title>
+        <title>Demo Flask + Bootstrap + Accenture</title>
         <!-- CSS de Bootstrap -->
         <link 
           rel="stylesheet" 
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
         />
+        <style>
+          /* Color principal de Accenture */
+          .accenture-bg {
+            background-color: #A100FF;
+          }
+          .accenture-text {
+            color: #A100FF;
+          }
+          /* Ajustes opcionales para el botón con color Accenture */
+          .btn-accenture {
+            background-color: #A100FF;
+            border-color: #A100FF;
+            color: #fff;
+          }
+          .btn-accenture:hover {
+            background-color: #8500d1;
+            border-color: #8500d1;
+          }
+        </style>
       </head>
       <body class="bg-light">
-        <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
-          <div class="card shadow p-4">
-            <h1 class="display-5 text-center text-primary">Hello World desde Flask en Kubernetes!</h1>
-            <p class="lead text-center mt-3">¡Se vienen cositas más geniales!</p>
-            <hr>
+        <div class="container vh-100 d-flex flex-column justify-content-center align-items-center">
+          <!-- Logo de Accenture -->
+          <div class="mb-4">
+            <img 
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Accenture_Logo_2016.svg/1280px-Accenture_Logo_2016.svg.png" 
+              alt="Accenture Logo" 
+              width="250"
+            />
+          </div>
+          <!-- Tarjeta con fondo blanco -->
+          <div class="card shadow p-5 w-100" style="max-width: 600px;">
+            <h1 class="text-center accenture-text mb-3">
+              Hello World desde Flask en Kubernetes!
+            </h1>
+            <p class="lead text-center text-secondary mb-4">
+              ¡Se vienen cositas más geniales con Accenture!
+            </p>
             <div class="text-center">
-              <button class="btn btn-primary">¡Haz clic aquí!</button>
+              <button class="btn btn-accenture btn-lg">
+                ¡Haz clic aquí!
+              </button>
             </div>
           </div>
         </div>
-        <!-- JS de Bootstrap (opcional, para componentes interactivos) -->
+
+        <!-- JS de Bootstrap (opcional para componentes interactivos) -->
         <script 
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
         </script>
