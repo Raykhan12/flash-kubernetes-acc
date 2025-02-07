@@ -51,7 +51,7 @@ def hello():
               Hello World desde Flask en Kubernetes!
             </h1>
             <p class="lead text-center text-secondary mb-4">
-              ¡Se vienen cositas más geniales con Accenture!
+              ¡Se vienen cositas más geniales con Accenture test!
             </p>
             <div class="text-center">
               <button class="btn btn-accenture btn-lg">
