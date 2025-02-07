@@ -7,6 +7,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: self-hosted
+    environment: prod
     # O si definiste otra etiqueta en tu runner, por ejemplo "windows", usar:
     # runs-on: [self-hosted, windows]
 
@@ -16,7 +17,7 @@ jobs:
 
       - name: Docker Login
         run: |
-          docker login -u raykhan007 -p "Tt123456789?"
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push Docker image
         run: |
