@@ -25,11 +25,11 @@ jobs:
             echo "Podman already installed"
           fi
      
-      - name: Login to DockerHub using Podman
+      - name: Login to DockerHub using Podman o Docker
         run: |
           podman login docker.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           
-      - name: Build and push image using Podman
+      - name: Build and push image using Podman o Docker
         run: |
           podman build -t docker.io/raykhan007/my-flask-app:latest .
           podman push docker.io/raykhan007/my-flask-app:latest
