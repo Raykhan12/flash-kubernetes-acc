@@ -1,18 +1,17 @@
+---
 name: CI/CD Flask App
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 jobs:
   build-and-deploy:
     runs-on: self-hosted
     environment: prod
-    # O si definiste otra etiqueta en tu runner, por ejemplo "windows", usar:
-    # runs-on: [self-hosted, windows]
     steps:
       - name: Check out code
         uses: actions/checkout@v3
-      
-      - name: Install Podman if not installed
+      - name: BUILD - Install Podman if not installed
         run: |
           if ! command -v podman &> /dev/null; then
             echo "Podman not found, installing..."
@@ -24,21 +23,20 @@ jobs:
           else
             echo "Podman already installed"
           fi
-     
-      - name: Login to DockerHub using Podman o Docker
-        run: |
-          podman login docker.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          
-      - name: Build and push image using Podman o Docker
+      - name: BUILD - Login to DockerHub using Podman o Docker
+        run: >
+          podman login docker.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{
+          secrets.DOCKER_PASSWORD }}
+      - name: BUILD - Build image using Podman o Docker
         run: |
           podman build -t docker.io/raykhan007/my-flask-app:latest .
           podman push docker.io/raykhan007/my-flask-app:latest
-          
-      - name: Deploy to Kubernetes
+      - name: RELEASE - Push image using Podman o Docker
+        run: |
+          podman build -t docker.io/raykhan007/my-flask-app:latest .
+          podman push docker.io/raykhan007/my-flask-app:latest
+      - name: DEPLOY - Kubernetes
         run: |
           kubectl delete -f k8s/deployment.yaml
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
-  
-
-          
