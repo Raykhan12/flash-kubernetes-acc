@@ -7,7 +7,7 @@ app = Flask(__name__, static_folder='static')
 def hello():
     return render_template("index.html")
 
-@app.route('/asset/<path:filename>')
+@app.route('/static/asset')
 def serve_asset(filename):
     return send_from_directory('static/assets', filename)
 
