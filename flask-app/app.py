@@ -1,15 +1,15 @@
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, url_for
 import os
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__)
 
 @app.route("/")
 def hello():
     return render_template("index.html")
 
-@app.route('/asset')
-def serve_asset(filename):
-    return send_from_directory('static/asset', filename)
+@app.route('/asset/<path:path>')
+def serve_asset(path):
+    return send_from_directory('static/asset', path)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
